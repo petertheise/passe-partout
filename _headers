@@ -1,0 +1,8 @@
+/*
+  # Only scripts shipped with the app may run — the main defense that keeps
+  # any injected HTML from ever executing code (or stealing a stored API key).
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.basemaps.cartocdn.com; connect-src https:; worker-src blob:; child-src blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(self), microphone=(self), camera=()

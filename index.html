@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <title>Passe-Partout</title>
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Passe-Partout">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="vendor/maplibre-gl.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="vendor/maplibre-gl.js"></script>
+  <script src="vendor/papaparse.min.js"></script>
+  <script src="vendor/dexie.min.js"></script>
+</head>
+<body>
+  <header id="topbar">
+    <button id="citySwitch" class="city">📍 Paris ▾</button>
+    <div class="right">
+      <span id="syncDot" class="sync ok" title="Up to date"></span>
+      <button id="btnSettings" class="icon" title="Manage trips">⚙️</button>
+    </div>
+  </header>
+
+  <div id="filterbar" class="filterbar"></div>
+
+  <main>
+    <!-- MAP -->
+    <section id="screen-map" class="screen active">
+      <div id="map"></div>
+      <div id="todayCard" class="today" style="display:none"></div>
+      <div id="legend" class="legend">
+        <div class="lg-head">🎨 Legend <span class="chev">▾</span></div>
+        <div class="lg-body"></div>
+      </div>
+      <button id="btnLocate" class="fab locate" title="Center on me">◎</button>
+      <button id="btnNearby" class="fab nearby" title="What's nearby">✨</button>
+      <button id="btnAdd" class="fab add" title="Add a place">＋</button>
+    </section>
+
+    <!-- NEAR ME -->
+    <section id="screen-near" class="screen scroll">
+      <h1 class="scrn-title">Near Me</h1>
+      <div id="nearContent"></div>
+    </section>
+
+    <!-- PLAN -->
+    <section id="screen-plan" class="screen scroll">
+      <h1 class="scrn-title">Itinerary &amp; Logistics</h1>
+      <div id="planContent"></div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="screen-tools" class="screen scroll">
+      <h1 class="scrn-title">Pocket Tools</h1>
+      <div id="toolsContent"></div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section id="screen-journal" class="screen scroll">
+      <h1 class="scrn-title">Travel Journal</h1>
+      <div id="journalContent"></div>
+    </section>
+
+    <!-- TRIPS / SETTINGS -->
+    <section id="screen-trips" class="screen scroll">
+      <h1 class="scrn-title">Manage Trips</h1>
+      <div id="tripsContent"></div>
+    </section>
+  </main>
+
+  <nav id="bottomnav">
+    <button data-screen="map" class="on"><span>🗺️</span>Map</button>
+    <button data-screen="near"><span>📍</span>Near</button>
+    <button data-screen="plan"><span>🎫</span>Plan</button>
+    <button data-screen="tools"><span>🧰</span>Tools</button>
+    <button data-screen="journal"><span>📖</span>Journal</button>
+  </nav>
+
+  <div id="backdrop"></div>
+  <div id="drawer" class="drawer"></div>
+
+  <div id="modal" class="modal"><div id="modalBody" class="modal-body"></div></div>
+  <div id="toast" class="toast"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

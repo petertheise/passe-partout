@@ -1,0 +1,36 @@
+[
+  {
+    "id": "paris",
+    "city": "Paris",
+    "flag": "🗼",
+    "sheetId": "YOUR_GOOGLE_SHEET_ID",
+    "poiGids": [
+      0
+    ],
+    "hotelGid": 0,
+    "logisticsSheet": "Logistics",
+    "geojson": "data/geo/paris.geojson",
+    "center": [
+      2.348,
+      48.8566
+    ],
+    "zoom": 12
+  },
+  {
+    "id": "lyon",
+    "city": "Lyon",
+    "flag": "🦁",
+    "sheetId": "YOUR_GOOGLE_SHEET_ID",
+    "poiGids": [
+      0
+    ],
+    "hotelGid": 0,
+    "logisticsSheet": "Logistics",
+    "geojson": "data/geo/lyon.geojson",
+    "center": [
+      4.832,
+      45.758
+    ],
+    "zoom": 12.5
+  }
+]

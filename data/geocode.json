@@ -1,0 +1,646 @@
+{
+"lyon::Bouchon Restaurants": {
+"lat": 45.7686767,
+"lng": 4.8293173,
+"source": "osm",
+"display": "Le Bouchon des Filles, Rue Sergent Blandan, Terreaux, Lyon 1er Arrondissement, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, 69001, France",
+"query": "Bouchon Restaurants, Lyon, France"
+},
+"lyon::Fourvière Hill": {
+"lat": 45.7622,
+"lng": 4.8225,
+"source": "curated",
+"display": "curated address",
+"query": "Fourvière Hill, Lyon, France"
+},
+"lyon::Jardin de Curiosities": {
+"lat": 45.7593,
+"lng": 4.818,
+"source": "curated",
+"display": "curated address",
+"query": "Jardin de Curiosities, 3rd, Lyon, France"
+},
+"lyon::La Montée de la Grande Côte": {
+"lat": 45.7710222,
+"lng": 4.8316958,
+"source": "osm",
+"display": "La Ruelle de PeïPeï, Montée de la Grande Côte, Pentes de la Croix-Rousse, Lyon 1er Arrondissement, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, 69001, France",
+"query": "La Montée de la Grande Côte, 1st, Lyon, France"
+},
+"lyon::Le Bouchon des Cordeliers": {
+"lat": 45.7643,
+"lng": 4.8358,
+"source": "curated",
+"display": "curated address",
+"query": "Le Bouchon des Cordeliers, 3rd, Lyon, France"
+},
+"lyon::Le Merciere": {
+"lat": 45.7626036,
+"lng": 4.8326655,
+"source": "osm",
+"display": "Le Mercière, Passage des Imprimeurs, Cordeliers, Lyon 2e Arrondissement, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, 69002, France",
+"query": "Le Merciere, Lyon, France"
+},
+"lyon::Les Halles de Paul Bocuse": {
+"lat": 45.7628,
+"lng": 4.8558,
+"source": "curated",
+"display": "curated address",
+"query": "Les Halles de Paul Bocuse, 3rd, Lyon, France"
+},
+"lyon::Les Pentes": {
+"lat": 45.7706367,
+"lng": 4.836805,
+"source": "osm",
+"display": "Slo Hostel Lyon Les Pentes, 21, Rue Alsace Lorraine, Terreaux, Lyon 1er Arrondissement, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, 69001, France",
+"query": "Les Pentes, 1st, Lyon, France"
+},
+"lyon::Lumiere Museum": {
+"lat": 45.7450881,
+"lng": 4.8706151,
+"source": "osm",
+"display": "Institut Lumière, Rue du Premier Film, Monplaisir, Lyon 8e Arrondissement, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, 69008, France",
+"query": "Lumiere Museum, Lyon, France"
+},
+"lyon::Parc de la Tete d'Or": {
+"lat": 45.7785792,
+"lng": 4.8520963,
+"source": "osm",
+"display": "Parc de la Tête d'Or, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, France",
+"query": "Parc de la Tete d'Or, Lyon, France"
+},
+"lyon::Quai Saint Antoine": {
+"lat": 45.7622103,
+"lng": 4.8318292,
+"source": "osm",
+"display": "Quai Saint Antoine, Bellecour, Lyon 2e Arrondissement, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, 69002, France",
+"query": "Quai Saint Antoine, 2nd, Lyon, France"
+},
+"lyon::Traboules in Croux-Rousse": {
+"lat": 45.774,
+"lng": 4.833,
+"source": "curated",
+"display": "curated address",
+"query": "Traboules in Croux-Rousse, Lyon, France"
+},
+"lyon::Vieux Lyon": {
+"lat": 45.7624951,
+"lng": 4.8268635,
+"source": "osm",
+"display": "Vieux Lyon, Lyon 5e Arrondissement, Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, 69005, France",
+"query": "Vieux Lyon, Lyon, France"
+},
+"paris::Arc de Triomphe": {
+"lat": 48.8737791,
+"lng": 2.2950372,
+"source": "osm",
+"display": "Arc de Triomphe, Passage du Souvenir, Quartier des Ternes, Paris 17e Arrondissement, Paris, Île-de-France, France métropolitaine, 75017, France",
+"query": "Arc de Triomphe, 8th, Paris, France"
+},
+"paris::Aux Deux Amis": {
+"lat": 48.8645963,
+"lng": 2.3718331,
+"source": "osm",
+"display": "Aux Deux Amis, Rue Oberkampf, Quartier de la Folie-Méricourt, Paris 11e Arrondissement, Paris, Île-de-France, France métropolitaine, 75011, France",
+"query": "Aux Deux Amis, 11th, Paris, France"
+},
+"paris::BAMBINO": {
+"lat": 48.8613856,
+"lng": 2.3699258,
+"source": "osm",
+"display": "Bambino, Rue Saint-Sébastien, Quartier Saint-Ambroise, Paris 11e Arrondissement, Paris, Île-de-France, France métropolitaine, 75011, France",
+"query": "BAMBINO, 11th, Paris, France"
+},
+"paris::Basilique Cathedrale Saint-Denis": {
+"lat": 48.9356,
+"lng": 2.3599,
+"source": "curated",
+"display": "curated address",
+"query": "Basilique Cathedrale Saint-Denis, Saint-Denis (north of Paris), Paris, France"
+},
+"paris::Basilique du Sacre-Coeur": {
+"lat": 48.8868058,
+"lng": 2.3430153,
+"source": "osm",
+"display": "Basilique du Sacré-Cœur, Rue du Chevalier de la Barre, Quartier de Clignancourt, Paris 18e Arrondissement, Paris, Île-de-France, France métropolitaine, 75018, France",
+"query": "Basilique du Sacre-Coeur, 18th, Paris, France"
+},
+"paris::Belvedere de Belleville": {
+"lat": 48.8715819,
+"lng": 2.3853213,
+"source": "osm",
+"display": "Belvédère Willy Ronis, Quartier de Belleville, Paris 20e Arrondissement, Paris, Île-de-France, France métropolitaine, 75020, France",
+"query": "Belvedere de Belleville, 20th, Paris, France"
+},
+"paris::Biche": {
+"lat": 48.873335,
+"lng": 2.3091932,
+"source": "osm",
+"display": "Biche, Rue du Faubourg Saint-Honoré, Quartier du Faubourg-du-Roule, Paris 8e Arrondissement, Paris, Île-de-France, France métropolitaine, 75008, France",
+"query": "Biche, 8th, Paris, France"
+},
+"paris::Bisou": {
+"lat": 48.864097,
+"lng": 2.3658347,
+"source": "osm",
+"display": "Bisou., Boulevard du Temple, Quartier des Enfants-Rouges, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France",
+"query": "Bisou, Paris, France"
+},
+"paris::Bouillon Julien": {
+"lat": 48.8705409,
+"lng": 2.3532213,
+"source": "osm",
+"display": "Bouillon Julien, Rue du Faubourg Saint-Denis, Quartier de la Porte-Saint-Denis, Paris 10e Arrondissement, Paris, Île-de-France, France métropolitaine, 75010, France",
+"query": "Bouillon Julien, 10th, Paris, France"
+},
+"paris::Bouillon Pigalle": {
+"lat": 48.8826186,
+"lng": 2.3374142,
+"source": "osm",
+"display": "Bouillon Pigalle, 22, Boulevard de Clichy, Quartier des Grandes-Carrières, Paris 18e Arrondissement, Paris, Île-de-France, France métropolitaine, 75018, France",
+"query": "Bouillon Pigalle, 18th, Paris, France"
+},
+"paris::Bouillon Republique": {
+"lat": 48.8660094,
+"lng": 2.3646451,
+"source": "osm",
+"display": "Bouillon République, 39, Boulevard du Temple, Quartier des Enfants-Rouges, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France",
+"query": "Bouillon Republique, 3rd, Paris, France"
+},
+"paris::Boutique Maille": {
+"lat": 48.8698,
+"lng": 2.3255,
+"source": "curated",
+"display": "curated address",
+"query": "Boutique Maille, 8th, Paris, France"
+},
+"paris::Brasserie Bofinger": {
+"lat": 48.8539095,
+"lng": 2.3680433,
+"source": "osm",
+"display": "Brasserie Bofinger, Rue de la Bastille, Quartier de l'Arsenal, Paris 4e Arrondissement, Paris, Île-de-France, France métropolitaine, 75004, France",
+"query": "Brasserie Bofinger, 4th, Paris, France"
+},
+"paris::Brasserie Lipp": {
+"lat": 48.8537528,
+"lng": 2.3324105,
+"source": "osm",
+"display": "Brasserie Lipp, 151, Boulevard Saint-Germain, Quartier de Saint-Germain-des-Prés, Paris 6e Arrondissement, Paris, Île-de-France, France métropolitaine, 75006, France",
+"query": "Brasserie Lipp, 6th, Paris, France"
+},
+"paris::Brasserie des Pres": {
+"lat": 48.8528875,
+"lng": 2.3392324,
+"source": "osm",
+"display": "Brasserie des Prés, 6, Cour du Commerce Saint-André, Quartier de la Monnaie, Paris 6e Arrondissement, Paris, Île-de-France, France métropolitaine, 75006, France",
+"query": "Brasserie des Pres, 6th, Paris, France"
+},
+"paris::Breizh Cafe": {
+"lat": 48.8471599,
+"lng": 2.2855769,
+"source": "osm",
+"display": "Breizh Cafe, Rue Linois, Quartier de Grenelle, Paris 15e Arrondissement, Paris, Île-de-France, France métropolitaine, 75015, France",
+"query": "Breizh Cafe, Paris, France"
+},
+"paris::Cafe Campana": {
+"lat": 48.8603116,
+"lng": 2.3261376,
+"source": "osm",
+"display": "Café Campana, 1, Rue de la Légion d'Honneur, Quartier Saint-Thomas-d'Aquin, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "Cafe Campana, 7th, Paris, France"
+},
+"paris::Canal Saint-Martin": {
+"lat": 48.877094,
+"lng": 2.3660399,
+"source": "osm",
+"display": "Canal Saint-Martin, Rue des Écluses Saint-Martin, Quartier de l'Hôpital Saint-Louis, Paris 10e Arrondissement, Paris, Île-de-France, France métropolitaine, 75010, France",
+"query": "Canal Saint-Martin, 10th, Paris, France"
+},
+"paris::Catacombs": {
+"lat": 48.8337439,
+"lng": 2.3322925,
+"source": "osm",
+"display": "Catacombes de Paris, 1, Avenue du Colonel Henri Rol Tanguy, Quartier du Petit-Montrouge, Paris 14e Arrondissement, Paris, Île-de-France, France métropolitaine, 75014, France",
+"query": "Catacombs, 14th, Paris, France"
+},
+"paris::Chez Alain Miam Miam": {
+"lat": 48.8622747,
+"lng": 2.3619516,
+"source": "osm",
+"display": "Chez Alain Miam Miam, 26, Rue Charlot, Quartier des Enfants-Rouges, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France",
+"query": "Chez Alain Miam Miam, 3rd, Paris, France"
+},
+"paris::Chez Jeanette": {
+"lat": 48.8712,
+"lng": 2.354,
+"source": "curated",
+"display": "curated address",
+"query": "Chez Jeanette, France"
+},
+"paris::Cider houses??": {
+"lat": null,
+"lng": null,
+"source": "unresolved",
+"display": "",
+"query": "Cider houses??, Yvelines (southwest of Paris), Paris, France"
+},
+"paris::Cinq Mars": {
+"lat": 48.8585762,
+"lng": 2.3269412,
+"source": "osm",
+"display": "Cinq Mars, Rue de Verneuil, Quartier Saint-Thomas-d'Aquin, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "Cinq Mars, 7th, Paris, France"
+},
+"paris::Conciergerie": {
+"lat": 48.8559492,
+"lng": 2.3460263,
+"source": "osm",
+"display": "Conciergerie, 2, Boulevard du Palais, Saint-Germain-l'Auxerrois, Paris 1er Arrondissement, Paris, Île-de-France, France métropolitaine, 75001, France",
+"query": "Conciergerie, 1st, Paris, France"
+},
+"paris::Coulee Verte": {
+"lat": 48.8403637,
+"lng": 2.4051241,
+"source": "osm",
+"display": "Coulée verte, Paris 12e Arrondissement, Paris, Île-de-France, France métropolitaine, 75012, France",
+"query": "Coulee Verte, 12th, Paris, France"
+},
+"paris::Eiffel Tower": {
+"lat": 48.8582599,
+"lng": 2.2945006,
+"source": "osm",
+"display": "Tour Eiffel, 5, Avenue Anatole France, Quartier du Gros-Caillou, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "Eiffel Tower, 7th, Paris, France"
+},
+"paris::Galeries Lafayette": {
+"lat": 48.8736459,
+"lng": 2.3321271,
+"source": "osm",
+"display": "Galeries Lafayette, 40, Boulevard Haussmann, Quartier de la Chaussée-d'Antin, Paris 9e Arrondissement, Paris, Île-de-France, France métropolitaine, 75009, France",
+"query": "Galeries Lafayette, 9th, Paris, France"
+},
+"paris::Grand Palais": {
+"lat": 48.8661614,
+"lng": 2.3122229,
+"source": "osm",
+"display": "Grand Palais, Avenue de Selves, Quartier des Champs-Élysées, Paris 8e Arrondissement, Paris, Île-de-France, France métropolitaine, 75008, France",
+"query": "Grand Palais, 8th, Paris, France"
+},
+"paris::Hotel Particulier Montmartre": {
+"lat": 48.888158,
+"lng": 2.3355125,
+"source": "osm",
+"display": "Hôtel Particulier Montmartre, 23, Avenue Junot, Quartier des Grandes-Carrières, Paris 18e Arrondissement, Paris, Île-de-France, France métropolitaine, 75018, France",
+"query": "Hotel Particulier Montmartre, 18th, Paris, France"
+},
+"paris::Ile de Reuilly": {
+"lat": 48.8308488,
+"lng": 2.4135675,
+"source": "osm",
+"display": "Île de Reuilly, Paris 12e Arrondissement, Paris, Île-de-France, France métropolitaine, 75012, France",
+"query": "Ile de Reuilly, 12th, Paris, France"
+},
+"paris::Kilo Shop Paris Saint Michel": {
+"lat": 48.8517,
+"lng": 2.3437,
+"source": "curated",
+"display": "curated address",
+"query": "Kilo Shop Paris Saint Michel, 5th, Paris, France"
+},
+"paris::Kodawari Ramen - Tsukiji": {
+"lat": 48.8643846,
+"lng": 2.3362784,
+"source": "osm",
+"display": "Kodawari Ramen (Tsukiji), 12, Rue de Richelieu, Quartier du Palais Royal, Paris 1er Arrondissement, Paris, Île-de-France, France métropolitaine, 75001, France",
+"query": "Kodawari Ramen - Tsukiji, 1st, Paris, France"
+},
+"paris::L'Atelier Entrecote & Volaille": {
+"lat": 48.8683753,
+"lng": 2.3433303,
+"source": "osm",
+"display": "L'Atelier Entrecôte & Volaille, 128, Rue Réaumur, Quartier du Mail, Paris 2e Arrondissement, Paris, Île-de-France, France métropolitaine, 75002, France",
+"query": "L'Atelier Entrecote & Volaille, Paris, France"
+},
+"paris::L'Atelier de Joel Robuchon": {
+"lat": 48.856659,
+"lng": 2.3275506,
+"source": "osm",
+"display": "L'Atelier de Joël Robuchon, Rue de Montalembert, Quartier Saint-Thomas-d'Aquin, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "L'Atelier de Joel Robuchon, Paris, France"
+},
+"paris::L'Avant Comptoir du Marche": {
+"lat": 48.8517954,
+"lng": 2.3354753,
+"source": "osm",
+"display": "L'Avant Comptoir du Marché, 14, Rue Lobineau, Quartier de l'Odéon, Paris 6e Arrondissement, Paris, Île-de-France, France métropolitaine, 75006, France",
+"query": "L'Avant Comptoir du Marche, 6th, Paris, France"
+},
+"paris::La Bellevilloise": {
+"lat": 48.8683449,
+"lng": 2.3920001,
+"source": "osm",
+"display": "La Bellevilloise, Rue Boyer, Quartier du Père-Lachaise, Paris 20e Arrondissement, Paris, Île-de-France, France métropolitaine, 75020, France",
+"query": "La Bellevilloise, 20th, Paris, France"
+},
+"paris::La Galerie Dior": {
+"lat": 48.8662,
+"lng": 2.3049,
+"source": "curated",
+"display": "curated address",
+"query": "La Galerie Dior, 8th, Paris, France"
+},
+"paris::La Grande Epicerie de Paris": {
+"lat": 48.850004,
+"lng": 2.3232825,
+"source": "osm",
+"display": "La Grande Épicerie de Paris, Rue du Bac, Quartier Saint-Thomas-d'Aquin, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "La Grande Epicerie de Paris, 7th, Paris, France"
+},
+"paris::La Petite Venise des Yvelines": {
+"lat": null,
+"lng": null,
+"source": "unresolved",
+"display": "",
+"query": "La Petite Venise des Yvelines, Yvelines (southwest of Paris), Paris, France"
+},
+"paris::La Procope": {
+"lat": 48.8534,
+"lng": 2.339,
+"source": "curated",
+"display": "curated address",
+"query": "La Procope, 6th, Paris, France"
+},
+"paris::Landline General Store": {
+"lat": null,
+"lng": null,
+"source": "unresolved",
+"display": "",
+"query": "Landline General Store, 11th, Paris, France"
+},
+"paris::Le Bistrot Paul Bert": {
+"lat": 48.8523,
+"lng": 2.3843,
+"source": "curated",
+"display": "curated address",
+"query": "Le Bistrot Paul Bert, France"
+},
+"paris::Le Bon Georges": {
+"lat": 48.8776422,
+"lng": 2.3372106,
+"source": "osm",
+"display": "Le Bon Georges, Rue d'Aumale, Quartier Saint-Georges, Paris 9e Arrondissement, Paris, Île-de-France, France métropolitaine, 75009, France",
+"query": "Le Bon Georges, 9th, Paris, France"
+},
+"paris::Le Comptoir General": {
+"lat": 48.8723977,
+"lng": 2.365021,
+"source": "osm",
+"display": "Le Comptoir général, 80, Quai de Jemmapes, Quartier de la Porte-Saint-Martin, Paris 10e Arrondissement, Paris, Île-de-France, France métropolitaine, 75010, France",
+"query": "Le Comptoir General, 10th, Paris, France"
+},
+"paris::Le Mary Celeste": {
+"lat": 48.861735,
+"lng": 2.3650034,
+"source": "osm",
+"display": "Le Mary Celeste, Rue Commines, Quartier des Enfants-Rouges, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France",
+"query": "Le Mary Celeste, 3rd, Paris, France"
+},
+"paris::Le Petit Bouillon Pharamond": {
+"lat": 48.8630052,
+"lng": 2.3485011,
+"source": "osm",
+"display": "Le Petit Bouillon Pharamond, 24, Rue de la Grande Truanderie, Quartier Les Halles, Paris 1er Arrondissement, Paris, Île-de-France, France métropolitaine, 75001, France",
+"query": "Le Petit Bouillon Pharamond, 1st, Paris, France"
+},
+"paris::Le Rampart Bastille": {
+"lat": 48.8535,
+"lng": 2.3705,
+"source": "curated",
+"display": "curated address",
+"query": "Le Rampart Bastille, 4th, Paris, France"
+},
+"paris::Le Syndicat": {
+"lat": 48.871802,
+"lng": 2.353621,
+"source": "osm",
+"display": "Le Syndicat, Rue du Faubourg Saint-Denis, Quartier de la Porte-Saint-Denis, Paris 10e Arrondissement, Paris, Île-de-France, France métropolitaine, 75010, France",
+"query": "Le Syndicat, 10th, Paris, France"
+},
+"paris::Le Voltaire": {
+"lat": 48.8591165,
+"lng": 2.3302244,
+"source": "osm",
+"display": "Le Voltaire, Rue de Beaune, Quartier Saint-Thomas-d'Aquin, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "Le Voltaire, 7th, Paris, France"
+},
+"paris::Les Invalides": {
+"lat": 48.8570374,
+"lng": 2.3118779,
+"source": "osm",
+"display": "Musée de l'Armée, 129, Rue de Grenelle, Quartier des Invalides, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "Les Invalides, 7th, Paris, France"
+},
+"paris::Little Red Door": {
+"lat": 48.8636642,
+"lng": 2.3635873,
+"source": "osm",
+"display": "Little Red Door, Rue Charlot, Quartier des Enfants-Rouges, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France",
+"query": "Little Red Door, 3rd, Paris, France"
+},
+"paris::Louvre": {
+"lat": 48.8611473,
+"lng": 2.3380277,
+"source": "osm",
+"display": "Musée du Louvre, Rue de Rivoli, Quartier Les Halles, Paris 1er Arrondissement, Paris, Île-de-France, France métropolitaine, 75001, France",
+"query": "Louvre, 1st, Paris, France"
+},
+"paris::Magnolia": {
+"lat": 48.8795411,
+"lng": 2.3369739,
+"source": "osm",
+"display": "Magnolia, 5, Rue Henry Monnier, Quartier Saint-Georges, Paris 9e Arrondissement, Paris, Île-de-France, France métropolitaine, 75009, France",
+"query": "Magnolia, 9th, Paris, France"
+},
+"paris::Maison Bordier Beurre": {
+"lat": 48.8595,
+"lng": 2.3168,
+"source": "curated",
+"display": "curated address",
+"query": "Maison Bordier Beurre, Yvelines (southwest of Paris), Paris, France"
+},
+"paris::Maison Verot": {
+"lat": 48.8539074,
+"lng": 2.3644024,
+"source": "osm",
+"display": "Maison Verot, 49, Rue Saint-Antoine, Quartier de l'Arsenal, Paris 4e Arrondissement, Paris, Île-de-France, France métropolitaine, 75004, France",
+"query": "Maison Verot, Paris, France"
+},
+"paris::Maison de Victor Hugo": {
+"lat": 48.854799,
+"lng": 2.3661358,
+"source": "osm",
+"display": "Maison de Victor Hugo, 6, Place des Vosges, Quartier de l'Arsenal, Paris 4e Arrondissement, Paris, Île-de-France, France métropolitaine, 75004, France",
+"query": "Maison de Victor Hugo, 4th, Paris, France"
+},
+"paris::Marche des Enfants Rouge": {
+"lat": 48.8632,
+"lng": 2.3628,
+"source": "curated",
+"display": "curated address",
+"query": "Marche des Enfants Rouge, 3rd, Paris, France"
+},
+"paris::Montmartre Cemetery": {
+"lat": 48.8876796,
+"lng": 2.3301891,
+"source": "osm",
+"display": "Cimetière de Montmartre, Paris, Île-de-France, France métropolitaine, France",
+"query": "Montmartre Cemetery, Paris, France"
+},
+"paris::Montparnasse Cemetery": {
+"lat": 48.8381304,
+"lng": 2.326317,
+"source": "osm",
+"display": "Cimetière du Montparnasse, Paris, Île-de-France, France métropolitaine, France",
+"query": "Montparnasse Cemetery, Paris, France"
+},
+"paris::Musee Yves Saint Laurent": {
+"lat": 48.8655906,
+"lng": 2.2993156,
+"source": "osm",
+"display": "Musée Yves Saint Laurent, Rue Léonce Reynaud, Chaillot, Paris 16e Arrondissement, Paris, Île-de-France, France métropolitaine, 75116, France",
+"query": "Musee Yves Saint Laurent, 16th, Paris, France"
+},
+"paris::Musée d'Orsay": {
+"lat": 48.8599179,
+"lng": 2.3265849,
+"source": "osm",
+"display": "Musée d'Orsay, 1, Rue de la Légion d'Honneur, Quartier Saint-Thomas-d'Aquin, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "Musée d'Orsay, 7th, Paris, France"
+},
+"paris::Notre-Dame de Paris": {
+"lat": 48.8529371,
+"lng": 2.3500501,
+"source": "osm",
+"display": "Cathédrale Notre-Dame de Paris, 6, Parvis Notre-Dame - Place Jean-Paul II, Quartier Les Îles, Paris 4e Arrondissement, Paris, Île-de-France, France métropolitaine, 75004, France",
+"query": "Notre-Dame de Paris, 4th, Paris, France"
+},
+"paris::Pantheon": {
+"lat": 48.8461947,
+"lng": 2.3460507,
+"source": "osm",
+"display": "Panthéon, Place du Panthéon, Quartier de la Sorbonne, Paris 5e Arrondissement, Paris, Île-de-France, France métropolitaine, 75005, France",
+"query": "Pantheon, 5th, Paris, France"
+},
+"paris::Parc Monceau": {
+"lat": 48.8770056,
+"lng": 2.3114068,
+"source": "osm",
+"display": "Ruysdaël - Parc Monceau, Avenue de Messine, Quartier de l'Europe, Paris 8e Arrondissement, Paris, Île-de-France, France métropolitaine, 75008, France",
+"query": "Parc Monceau, 8th, Paris, France"
+},
+"paris::Passage du Grand-Cerf": {
+"lat": 48.8647957,
+"lng": 2.3493943,
+"source": "osm",
+"display": "Passage du Grand-Cerf, Bonne-Nouvelle, Paris 2e Arrondissement, Paris, Île-de-France, France métropolitaine, 75002, France",
+"query": "Passage du Grand-Cerf, 2nd, Paris, France"
+},
+"paris::Pere Lachaise Cemetery": {
+"lat": 48.8611296,
+"lng": 2.3940087,
+"source": "osm",
+"display": "Cimetière du Père-Lachaise, 8, Paris, Île-de-France, France métropolitaine, 75020, France",
+"query": "Pere Lachaise Cemetery, Paris, France"
+},
+"paris::Petit Palais": {
+"lat": 48.866042,
+"lng": 2.3153496,
+"source": "osm",
+"display": "Musée des beaux-arts de la Ville de Paris, Avenue Winston Churchill, Quartier des Champs-Élysées, Paris 8e Arrondissement, Paris, Île-de-France, France métropolitaine, 75008, France",
+"query": "Petit Palais, 8th, Paris, France"
+},
+"paris::Picpus Cemetery": {
+"lat": 48.8440097,
+"lng": 2.4003974,
+"source": "osm",
+"display": "Cimetière de Picpus, Paris 12e Arrondissement, Paris, Île-de-France, France métropolitaine, 75012, France",
+"query": "Picpus Cemetery, 12th, Paris, France"
+},
+"paris::Place de la Bastille": {
+"lat": 48.8526196,
+"lng": 2.3687761,
+"source": "osm",
+"display": "Place de la Bastille, Quartier de l'Arsenal, Paris 4e Arrondissement, Paris, Île-de-France, France métropolitaine, 75004, France",
+"query": "Place de la Bastille, 4th, Paris, France"
+},
+"paris::Place de la Concorde": {
+"lat": 48.8655715,
+"lng": 2.3212248,
+"source": "osm",
+"display": "Place de la Concorde, Voie Georges-Pompidou, Quartier des Champs-Élysées, Paris 8e Arrondissement, Paris, Île-de-France, France métropolitaine, 75008, France",
+"query": "Place de la Concorde, 8th, Paris, France"
+},
+"paris::Place de la Nation": {
+"lat": 48.8490633,
+"lng": 2.3946936,
+"source": "osm",
+"display": "Place de la Nation, Quartier Sainte-Marguerite, Paris 11e Arrondissement, Paris, Île-de-France, France métropolitaine, 75011, France",
+"query": "Place de la Nation, 11th, Paris, France"
+},
+"paris::Place des Vosges": {
+"lat": 48.8550655,
+"lng": 2.3653311,
+"source": "osm",
+"display": "Place des Vosges, Quartier de l'Arsenal, Paris 4e Arrondissement, Paris, Île-de-France, France métropolitaine, 75004, France",
+"query": "Place des Vosges, 3rd & 4th, Paris, France"
+},
+"paris::Pont Des Arts": {
+"lat": 48.8584578,
+"lng": 2.3375745,
+"source": "osm",
+"display": "Pont des Arts, Quartier de la Monnaie, Paris 6e Arrondissement, Paris, Île-de-France, France métropolitaine, 75006, France",
+"query": "Pont Des Arts, 1st, Paris, France"
+},
+"paris::Robert &  Louise": {
+"lat": 48.8590844,
+"lng": 2.3594957,
+"source": "osm",
+"display": "Robert et Louise, 64, Rue Vieille du Temple, Quartier des Archives, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France",
+"query": "Robert &  Louise, 3rd, Paris, France"
+},
+"paris::Saint-Chapelle": {
+"lat": 48.8582947,
+"lng": 2.3451938,
+"source": "osm",
+"display": "Chapelle Saint-Eloi des Orfèvres, Rue des Orfèvres, Saint-Germain-l'Auxerrois, Paris 1er Arrondissement, Paris, Île-de-France, France métropolitaine, 75001, France",
+"query": "Saint-Chapelle, 1st, Paris, France"
+},
+"paris::Salesforce Paris": {
+"lat": 48.8563148,
+"lng": 2.2935301,
+"source": "osm",
+"display": "Salesforce, Avenue Octave Gréard, Quartier du Gros-Caillou, Paris 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+"query": "Salesforce Paris, 7th, Paris, France"
+},
+"paris::Sunset on the Seine": {
+"lat": null,
+"lng": null,
+"source": "unresolved",
+"display": "",
+"query": "Sunset on the Seine, Yvelines (southwest of Paris), Paris, France"
+},
+"paris::Typology": {
+"lat": null,
+"lng": null,
+"source": "unresolved",
+"display": "",
+"query": "Typology, 9th, Paris, France"
+},
+"paris::Versailles": {
+"lat": 48.8287212,
+"lng": 2.2889813,
+"source": "osm",
+"display": "Paris Expo Porte de Versailles, Porte de Versailles, Quartier Saint-Lambert, Paris 15e Arrondissement, Paris, Île-de-France, France métropolitaine, 75015, France",
+"query": "Versailles, Paris, France"
+}
+}

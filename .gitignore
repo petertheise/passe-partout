@@ -1,0 +1,5 @@
+# real trip data (contains live Google Sheet IDs) — sample provided instead
+data/trips.json
+
+.DS_Store
+.claude/

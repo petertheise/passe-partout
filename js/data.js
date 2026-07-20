@@ -75,10 +75,16 @@ async function attachCoords(pois, tripId, { allowNetwork }) {
     if (seed && seed.lat != null) { p.lat = seed.lat; p.lng = seed.lng; p.geoSource = seed.source; continue; }
     const cached = await store.getGeo(p.geoName);
     if (cached && cached.lat != null) { p.lat = cached.lat; p.lng = cached.lng; p.geoSource = "cache"; continue; }
+    // A cached FAILURE (lat=null) also counts — retry at most once a day, not
+    // on every 30s refresh (each miss costs a 1.1s throttled Nominatim call).
+    if (cached && cached.lat == null && Date.now() - cached.ts < 86400e3) {
+      p.lat = null; p.lng = null; p.geoSource = "unplaced"; continue;
+    }
     if (allowNetwork && navigator.onLine) {
       const g = await geocodeLive(p.name, p.arrondissement, tripId);
       if (g) { p.lat = g.lat; p.lng = g.lng; p.geoSource = "osm";
                await store.setGeo(p.geoName, g.lat, g.lng); continue; }
+      await store.setGeo(p.geoName, null, null);  // remember the miss
     }
     p.lat = null; p.lng = null; p.geoSource = "unplaced";
   }

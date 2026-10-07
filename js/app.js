@@ -26,10 +26,18 @@ const todayISO = () => {
 // ---------- boot ----------
 init();
 async function init() {
+  // Ask iOS not to evict IndexedDB (journal, visited, manual places) under storage pressure.
+  try { navigator.storage?.persist?.(); } catch {}
   await data.loadGeocodeSeed();
   state.trips = await loadTrips();
   const savedId = await store.kvGet("activeTripId");
   state.trip = state.trips.find((t) => t.id === savedId) || state.trips[0];
+  if (!state.trip) {
+    // trips.json missing (first launch offline, or a deploy that dropped the
+    // gitignored file) and no saved trips: say so instead of a blank screen.
+    document.body.innerHTML = `<div class="empty" style="padding:40px 20px;text-align:center"><h3>Couldn’t load your trips</h3><p>Connect to the internet and reopen the app. If this keeps happening, the app’s <code>data/trips.json</code> is missing.</p></div>`;
+    return;
+  }
 
   ui.renderLegend($("#legend"));
   ui.renderFilters($("#filterbar"), state.filter, pickFilter);
@@ -57,29 +65,44 @@ async function loadTrips() {
 
 // ---------- data refresh (sync-merge) ----------
 async function refresh() {
+  if (state.refreshing) return;   // visibilitychange + timer can overlap on resume
+  state.refreshing = true;
   setSync("syncing");
   try {
-    const { pois, online } = await data.buildTripData(state.trip);
+    const { pois, online, cachedTs } = await data.buildTripData(state.trip);
     state.pois = pois;
     mapmod.renderPois(state.pois, filterFn());
-    setSync(online ? "ok" : "offline");
+    setSync(online ? "ok" : "offline", cachedTs);
   } catch (e) {
     console.error(e); setSync("offline");
+  } finally {
+    state.refreshing = false;
   }
   if (state.screen === "plan") loadPlan();
+  if (state.todayKey && state.todayKey !== todayISO()) maybeToday();   // phone left open overnight
 }
 
 function startPolling() {
   clearInterval(state.pollTimer);
-  state.pollTimer = setInterval(() => { if (!document.hidden) refresh(); }, 30000);
+  // The sheet changes maybe once a day; 5 min + on-resume is plenty on cellular.
+  state.pollTimer = setInterval(() => { if (!document.hidden) refresh(); }, 5 * 60000);
   document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
-  window.addEventListener("focus", refresh);
 }
 
-function setSync(s) {
+function setSync(s, cachedTs = null) {
   const d = $("#syncDot");
   d.className = "sync " + s;
   d.title = { ok: "Up to date", syncing: "Syncing…", offline: "Offline — showing cached data" }[s] || "";
+  // iOS never shows a title tooltip, so say it in words when we're on saved data.
+  const b = $("#netBanner");
+  if (!b) return;
+  if (s === "offline") {
+    const when = cachedTs ? new Date(cachedTs).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }) : null;
+    b.textContent = when ? `Offline · showing places saved ${when}` : "Offline · showing saved places";
+    b.hidden = false;
+  } else {
+    b.hidden = true;
+  }
 }
 
 // ---------- filters ----------
@@ -93,7 +116,10 @@ function pickFilter(id) {
 // ---------- drawer ----------
 let drawerPoi = null;
 function openDrawer(poi) {
-  drawerPoi = poi;
+  // Always act on the CURRENT object: refresh() replaces state.pois, so a
+  // marker's captured poi can be stale (visited/drag would hit the wrong one).
+  drawerPoi = state.pois.find((x) => x.pk === poi.pk) || poi;
+  mapmod.setFixMode(null);   // opening a drawer ends any "Place on map" session
   $("#drawer").innerHTML = ui.drawerHTML(poi);
   $("#drawer").classList.add("open");
   $("#backdrop").classList.add("show");
@@ -106,7 +132,7 @@ function closeDrawer() {
 $("#drawer").addEventListener("click", async (e) => {
   const act = e.target.closest("[data-act]")?.dataset.act;
   if (!act || !drawerPoi) return;
-  const p = drawerPoi;
+  const p = state.pois.find((x) => x.pk === drawerPoi.pk) || drawerPoi;
   if (act === "visit") {
     p.visited = !p.visited;
     await store.setVisited(p.pk, p.tripId, p.visited);
@@ -137,7 +163,10 @@ function wireChrome() {
   // legend collapse
   $("#legend .lg-head").onclick = () => $("#legend").classList.toggle("collapsed");
   // locate + nearby
-  $("#btnLocate").onclick = () => mapmod.centerOnUser();
+  $("#btnLocate").onclick = () => {
+    if (!mapmod.centerOnUser())
+      toast(mapmod.gpsDenied() ? "Location is off — Settings › Privacy › Location Services › Safari." : "Waiting for GPS… make sure location is allowed.");
+  };
   $("#btnNearby").onclick = runNearby;
   // FAB add
   $("#btnAdd").onclick = openAddForm;
@@ -186,11 +215,22 @@ async function loadNear() {
 }
 
 // ---------- today card ----------
+// One logistics fetch per few minutes, shared by the Today card and the Plan
+// screen (they used to each fetch at boot).
+async function getLogistics() {
+  const fresh = state.logisticsTs && Date.now() - state.logisticsTs < 5 * 60000 && state.logisticsTrip === state.trip.id;
+  if (fresh) return state.logistics;
+  state.logistics = await data.fetchLogistics(state.trip);
+  state.logisticsTs = Date.now(); state.logisticsTrip = state.trip.id;
+  return state.logistics;
+}
+
 async function maybeToday() {
   const iso = todayISO();
+  state.todayKey = iso;
   const card = $("#todayCard");
   if ((await store.kvGet("todayDismissed")) === iso + "::" + state.trip.id) { card.style.display = "none"; return; }
-  const logistics = await data.fetchLogistics(state.trip);
+  const logistics = await getLogistics();
   const events = logistics.filter((r) => r.date === iso)
     .sort((a, b) => (a.time || "").localeCompare(b.time || ""));
   if (!events.length) { card.style.display = "none"; return; }
@@ -219,7 +259,7 @@ async function maybeToday() {
 
 // ---------- plan ----------
 async function loadPlan() {
-  const [logistics, hotels] = await Promise.all([data.fetchLogistics(state.trip), data.fetchHotels(state.trip)]);
+  const [logistics, hotels] = await Promise.all([getLogistics(), data.fetchHotels(state.trip)]);
   state.logistics = logistics; state.hotels = hotels;
   ui.renderPlan($("#planContent"), logistics, hotels);
 }
@@ -275,7 +315,10 @@ async function loadJournal() {
     loadJournal();
   };
   $("#journalContent").querySelectorAll("[data-del]").forEach((b) =>
-    (b.onclick = async () => { await store.delJournal(b.dataset.del); loadJournal(); }));
+    (b.onclick = async () => {
+      if (!confirm("Delete this journal entry? It only exists on this phone.")) return;
+      await store.delJournal(b.dataset.del); loadJournal();
+    }));
   const exp = $("#jExport");
   if (exp) exp.onclick = async () => {
     const all = await store.getJournal(state.trip.id);
@@ -300,15 +343,16 @@ async function loadTripsScreen() {
   const c = $("#tripsContent");
   c.querySelectorAll("[data-switch]").forEach((b) => (b.onclick = () => setActive(b.dataset.switch)));
   c.querySelectorAll("[data-edittrip]").forEach((b) => (b.onclick = () => openTripForm(state.trips.find((t) => t.id === b.dataset.edittrip))));
-  c.querySelectorAll("[data-deltrip]").forEach((b) => (b.onclick = async () => { await store.delTrip(b.dataset.deltrip); state.trips = await loadTrips(); loadTripsScreen(); }));
+  c.querySelectorAll("[data-deltrip]").forEach((b) => (b.onclick = async () => {
+    if (!confirm("Delete this trip from the app?")) return;
+    await store.delTrip(b.dataset.deltrip); state.trips = await loadTrips(); loadTripsScreen();
+  }));
   $("#addTrip").onclick = () => openTripForm();
   // settings
   $("#aiKey").value = (await store.kvGet("aiKey")) || "";
-  $("#mapKey").value = (await store.kvGet("mapKey")) || "";
   $("#aiModel").value = (await store.kvGet("aiModel")) || "claude-sonnet-5";
   $("#saveSettings").onclick = async () => {
     await store.kvSet("aiKey", $("#aiKey").value.trim());
-    await store.kvSet("mapKey", $("#mapKey").value.trim());
     await store.kvSet("aiModel", $("#aiModel").value);
     toast("Settings saved.");
   };
@@ -405,7 +449,10 @@ function openAddForm() {
 
 // ---------- nearby AI ----------
 async function runNearby() {
-  if (!window.__userPos) { toast("Waiting for GPS…"); return; }
+  if (!window.__userPos) {
+    toast(mapmod.gpsDenied() ? "Location is off — Settings › Privacy › Location Services › Safari." : "Waiting for GPS…");
+    return;
+  }
   const loved = [...new Set(state.pois.filter((p) => (p.aggregate ?? 0) >= HIGH_PRIORITY).map((p) => p.category))]
     .map((c) => CATEGORIES[c].label);
   const journal = await store.getJournal(state.trip.id);

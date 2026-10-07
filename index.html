@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Passe-Partout</title>
   <meta name="theme-color" content="#0f172a">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://tiles.openfreemap.org; connect-src 'self' https://tiles.openfreemap.org https://docs.google.com https://*.googleusercontent.com https://api.anthropic.com https://nominatim.openstreetmap.org https://api.mymemory.translated.net https://open.er-api.com; worker-src 'self' blob:; child-src blob:; object-src 'none'; base-uri 'self'">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Passe-Partout">
@@ -24,6 +25,7 @@
       <button id="btnSettings" class="icon" title="Manage trips">⚙️</button>
     </div>
   </header>
+  <div id="netBanner" class="netbanner" hidden></div>
 
   <div id="filterbar" class="filterbar"></div>
 

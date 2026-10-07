@@ -8,6 +8,8 @@ let markers = new Map();          // pk -> { marker, poi }
 let onSelect = () => {};
 let fixModePk = null;             // pk currently being drag-fixed
 let userMarker = null;
+let gpsError = null;              // GeolocationPositionError.code, 1 = PERMISSION_DENIED
+export function gpsDenied() { return gpsError === 1; }
 
 export function initMap(containerId, trip, handlers = {}) {
   onSelect = handlers.onSelect || onSelect;
@@ -21,7 +23,6 @@ export function initMap(containerId, trip, handlers = {}) {
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
   map.on("load", () => loadBoundaries(trip));
   map.on("error", (e) => console.error("MAP ERROR:", e?.error?.message || e));
-  window.__map = map;
   return map;
 }
 
@@ -56,11 +57,16 @@ export function renderPois(pois, filterFn = () => true) {
       const el = document.createElement("div");
       const marker = new maplibregl.Marker({ element: el, anchor: "center", draggable: false })
         .setLngLat([poi.lng, poi.lat]).addTo(map);
-      el.addEventListener("click", (e) => { e.stopPropagation(); onSelect(poi); });
+      // Resolve the POI at event time: renderPois replaces entry.poi on every
+      // refresh, so capturing `poi` here would hand the drawer a stale object.
+      el.addEventListener("click", (e) => { e.stopPropagation(); onSelect(markers.get(poi.pk)?.poi || poi); });
       marker.on("dragend", () => {
+        const live = markers.get(poi.pk)?.poi || poi;
         const ll = marker.getLngLat();
-        store.setOverride(poi.pk, poi.tripId, ll.lng, ll.lat);
-        poi.lng = ll.lng; poi.lat = ll.lat;
+        store.setOverride(live.pk, live.tripId, ll.lng, ll.lat);
+        live.lng = ll.lng; live.lat = ll.lat; live.geoSource = "you";
+        fixModePk = null;                       // one drag ends the "Place on map" session
+        marker.setDraggable(false); el.classList.remove("fixing");
       });
       entry = { marker, poi, el };
       markers.set(poi.pk, entry);
@@ -90,7 +96,15 @@ function styleMarker(el, poi) {
   el.title = poi.name;
 }
 
-export function setFixMode(pk) { fixModePk = pk; }
+export function setFixMode(pk) {
+  // Leaving a "Place on map" session: un-drag the previous pin right away rather
+  // than waiting for the next renderPois (a stray thumb could move it meanwhile).
+  if (fixModePk && fixModePk !== pk) {
+    const e = markers.get(fixModePk);
+    if (e) { e.marker.setDraggable(false); e.el.classList.remove("fixing"); }
+  }
+  fixModePk = pk;
+}
 export function flyTo(lng, lat, zoom = 15) { map?.flyTo({ center: [lng, lat], zoom }); }
 export function flyToTrip(trip) { map?.flyTo({ center: trip.center, zoom: trip.zoom }); }
 
@@ -106,6 +120,7 @@ export function startGeolocation() {
   navigator.geolocation.watchPosition(
     (pos) => {
       const { longitude, latitude } = pos.coords;
+      gpsError = null;
       window.__userPos = [longitude, latitude];
       if (!userMarker) {
         dotEl = document.createElement("div");
@@ -115,12 +130,14 @@ export function startGeolocation() {
         userMarker.setLngLat([longitude, latitude]);
       }
     },
-    () => {},
+    (err) => { gpsError = err?.code ?? 1; },
     { enableHighAccuracy: true, maximumAge: 10000 }
   );
 }
 
+// Returns false when there's no fix yet; the caller shows the right message.
 export function centerOnUser() {
-  if (window.__userPos) map?.flyTo({ center: window.__userPos, zoom: 15 });
-  else alert("Waiting for GPS… make sure location is allowed.");
+  if (!window.__userPos) return false;
+  map?.flyTo({ center: window.__userPos, zoom: 15 });
+  return true;
 }

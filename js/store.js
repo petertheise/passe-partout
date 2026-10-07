@@ -29,6 +29,7 @@ export async function kvSet(key, value) {
 // --- sheet cache (offline) ---
 export const cacheSheet  = (tripId, pois) => db.sheetCache.put({ tripId, pois, ts: Date.now() });
 export const getCached   = async (tripId) => (await db.sheetCache.get(tripId))?.pois || [];
+export const getCachedEntry = (tripId) => db.sheetCache.get(tripId);   // { tripId, pois, ts }
 
 // --- manual entries ---
 export const getManual   = (tripId) => db.manual.where("tripId").equals(tripId).toArray();

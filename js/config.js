@@ -26,28 +26,14 @@ export function categoryFromType(rawType = "") {
   return "other";
 }
 
-// Keyless raster style (no account/token). Uses CARTO's CORS-enabled tiles,
-// which MapLibre requires for WebGL. OSM's own tile server lacks CORS headers.
+// Keyless basemap: OpenFreeMap vector tiles (free, no account, CORS-enabled,
+// no usage key). CARTO's raster tiles started requiring a key in Sep 2026.
+// The style JSON carries its own glyph + sprite URLs on the same host.
+// Changing this host? Also update the tile regex and cache name in sw.js and
+// the img-src/connect-src hosts in _headers and index.html.
+export const TILE_HOST = "tiles.openfreemap.org";
 export function osmRasterStyle() {
-  return {
-    version: 8,
-    sources: {
-      osm: {
-        type: "raster",
-        tiles: [
-          "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-          "https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-          "https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-          "https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-        ],
-        tileSize: 256,
-        attribution: "© OpenStreetMap contributors © CARTO",
-        maxzoom: 20,
-      },
-    },
-    layers: [{ id: "osm", type: "raster", source: "osm" }],
-    glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-  };
+  return `https://${TILE_HOST}/styles/positron`;
 }
 
 // Offline "pocket phrases" — always available with no network.

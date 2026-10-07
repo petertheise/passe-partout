@@ -246,3 +246,6 @@ main{flex:1;position:relative;overflow:hidden}
   font-size:12.5px;color:var(--dim)}
 .today-star{background:var(--bg);border:1px solid var(--line);border-radius:999px;
   padding:4px 10px;font-size:12.5px;font-weight:600;color:var(--txt)}
+
+/* ---- offline banner (iOS never shows a title tooltip, so say it in words) ---- */
+.netbanner{background:#b45309;color:#fff;font-size:13px;line-height:1.3;padding:6px 12px;text-align:center}

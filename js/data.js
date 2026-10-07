@@ -26,8 +26,14 @@ const namedUrl = (sheetId, name) =>
 function parseCsv(text) {
   return Papa.parse(text.trim(), { header: true, skipEmptyLines: true }).data;
 }
+// Abort a hung fetch (Métro-grade connectivity) instead of spinning for a minute.
+function withTimeout(ms) {
+  const c = new AbortController();
+  setTimeout(() => c.abort(), ms);
+  return c.signal;
+}
 async function fetchRows(url) {
-  const res = await fetch(url, { cache: "no-store" });
+  const res = await fetch(url, { cache: "no-store", signal: withTimeout(8000) });
   if (!res.ok) throw new Error("HTTP " + res.status);
   const text = await res.text();
   if (text.startsWith("<") || text.includes("gviz")) {
@@ -71,6 +77,11 @@ async function attachCoords(pois, tripId, { allowNetwork }) {
   const overrides = await store.getOverrides(tripId);
   for (const p of pois) {
     if (overrides[p.pk]) { p.lng = overrides[p.pk][0]; p.lat = overrides[p.pk][1]; p.geoSource = "you"; continue; }
+    // Manual entries arrive with coordinates already (and no geoName); keep them.
+    // Without this, store.getGeo(undefined) throws out of buildTripData and the
+    // whole refresh reports "offline" with frozen POIs.
+    if (p.lat != null && p.lng != null) { p.geoSource ??= "you"; continue; }
+    if (!p.geoName) { p.lat = null; p.lng = null; p.geoSource = "unplaced"; continue; }
     const seed = GEOCODE_SEED[p.geoName];
     if (seed && seed.lat != null) { p.lat = seed.lat; p.lng = seed.lng; p.geoSource = seed.source; continue; }
     const cached = await store.getGeo(p.geoName);
@@ -111,15 +122,25 @@ async function geocodeLive(name, arr, tripId) {
 export async function buildTripData(trip, { allowNetwork = true } = {}) {
   let sheetPois = [];
   let online = false;
+  let cachedTs = null;
   try {
     for (let i = 0; i < trip.poiGids.length; i++) {
       const rows = await fetchRows(csvUrl(trip.sheetId, trip.poiGids[i]));
       sheetPois.push(...normalizePoiRows(rows, trip.id, i));
     }
     online = true;
-    await store.cacheSheet(trip.id, sheetPois);   // refresh offline cache
+    // A pull that parses to ZERO places (renamed header, wrong gid, reordered
+    // tab) must never overwrite the last good offline copy: one sheet edit at
+    // home would blank the map abroad. Treat it like a failed pull instead.
+    if (sheetPois.length) {
+      await store.cacheSheet(trip.id, sheetPois);   // refresh offline cache
+    } else {
+      const c = await store.getCachedEntry(trip.id);
+      if (c?.pois?.length) { sheetPois = c.pois; cachedTs = c.ts; online = false; }
+    }
   } catch (e) {
-    sheetPois = await store.getCached(trip.id);   // offline: last good pull
+    const c = await store.getCachedEntry(trip.id);   // offline: last good pull
+    sheetPois = c?.pois || []; cachedTs = c?.ts || null;
   }
 
   // localState — manual entries, insulated from the prune above.
@@ -131,7 +152,33 @@ export async function buildTripData(trip, { allowNetwork = true } = {}) {
   const visited = await store.getVisitedMap(trip.id);
   for (const p of all) p.visited = !!visited[p.pk];
 
-  return { pois: all, online };
+  return { pois: all, online, cachedTs };
+}
+
+// Google's CSV export emits DISPLAY values, so a date cell comes out as
+// "8/2/2026" (sheet locale) rather than ISO, and a time as "9:14". Normalise
+// both so the Today card matches todayISO() and the timeline sorts by clock.
+export function normDate(v) {
+  const s = String(v ?? "").trim();
+  if (!s) return "";
+  let m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (m) return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
+  m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);          // M/D/YYYY (US sheet)
+  if (m) { const y = m[3].length === 2 ? "20" + m[3] : m[3]; return `${y}-${m[1].padStart(2, "0")}-${m[2].padStart(2, "0")}`; }
+  const d = new Date(s);
+  if (!isNaN(d)) return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  return s;   // unknown format: keep the text, it still groups a day together
+}
+export function normTime(v) {
+  const s = String(v ?? "").trim();
+  if (!s) return "";
+  const m = s.match(/^(\d{1,2})(?:[:h](\d{2}))?\s*([ap]\.?m\.?)?/i);
+  if (!m) return s;
+  let h = parseInt(m[1], 10); const mm = m[2] || "00";
+  const ap = (m[3] || "").toLowerCase();
+  if (ap.startsWith("p") && h < 12) h += 12;
+  if (ap.startsWith("a") && h === 12) h = 0;
+  return `${String(h).padStart(2, "0")}:${mm}`;
 }
 
 // --- Logistics tab (Date/Time/Category/Title/…). Empty if the tab doesn't exist. ---
@@ -140,8 +187,8 @@ export async function fetchLogistics(trip) {
     const rows = await fetchRows(namedUrl(trip.sheetId, trip.logisticsSheet || "Logistics"));
     const out = rows
       .map((r) => ({
-        date: (r["Date"] || "").trim(),
-        time: (r["Time"] || "").trim(),
+        date: normDate(r["Date"]),
+        time: normTime(r["Time"]),
         category: (r["Category"] || "").trim(),
         title: (r["Title"] || "").trim(),
         location: (r["Location/Address"] || r["Location"] || r["Address"] || "").trim(),

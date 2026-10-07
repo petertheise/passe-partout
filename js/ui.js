@@ -252,8 +252,6 @@ export function renderTrips(container, trips, activeId) {
           <option value="claude-sonnet-5">Sonnet — balanced (recommended)</option>
           <option value="claude-opus-4-8">Opus — best &amp; priciest</option>
         </select></label>
-      <label class="fld"><span>Map tile key (optional — MapTiler/Mapbox style URL)</span>
-        <input id="mapKey" placeholder="leave blank for free OpenStreetMap"></label>
       <button class="btn" id="saveSettings">Save settings</button>
       <div class="fine">Keys are stored only on this device (IndexedDB) and never leave it except to call that service directly.</div>
     </div>`;

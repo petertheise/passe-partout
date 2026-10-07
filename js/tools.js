@@ -22,6 +22,9 @@ export async function translate(text, dir /* "en|fr" or "fr|en" */) {
   try {
     const u = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${dir}`;
     const d = await (await fetch(u)).json();
+    // MyMemory puts its quota/error text INSIDE translatedText with a non-200
+    // responseStatus; never show "MYMEMORY WARNING: YOU USED ALL…" as French.
+    if (String(d?.responseStatus) !== "200") return "(translation service is busy — try again later)";
     return d?.responseData?.translatedText || "(no translation)";
   } catch {
     return "(offline — no connection for translation)";
